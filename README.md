@@ -1,4 +1,4 @@
-# Openlayers10AzurePlugin
+# Openlayers 10 Azure Plugin
 Attempt at getting Azure maps layers working with OL10
 
 Not much effort here
