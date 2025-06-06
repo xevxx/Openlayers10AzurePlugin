@@ -467,6 +467,7 @@
          */
         signRequest(request) {
             request.url = request.url.replace('{azMapsDomain}', this.options.azMapsDomain);
+            request.url = request.url.replace('{protocol}', this.options.hasOwnProperty('useSSL') && this.options.useSSL == false ? 'http': 'https');
 
             const h = Constants;
             const headers = request.headers || {};
@@ -599,11 +600,11 @@
             };
             const opt = {};
             Object.assign(opt, defaultOpts, options);
-
+           
             // 2) Build the “Render” base URL with the new version:
             //    (We do NOT special-case “/traffic/flow/tile” or “/traffic/incident/tile” anymore.)
             const baseUrl =
-                `https://{azMapsDomain}/map/tile` +
+                `{protocol}://{azMapsDomain}/map/tile` +
                 `?api-version=2024-04-01` +
                 `&tilesetId={tilesetId}` +
                 `&zoom={z}` +
@@ -682,12 +683,12 @@
             this._options.tilesetId = tilesetId;
 
             // rebuild base URL if it’s traffic
-            this._baseUrl = `https://{azMapsDomain}/map/tile?api-version=${Constants.RENDERV2_VERSION}&tilesetId={tilesetId}&zoom={z}&x={x}&y={y}&tileSize={tileSize}&language={language}&view={view}`;
-            if (tilesetId.startsWith('microsoft.traffic.flow')) {
-                this._baseUrl = 'https://{azMapsDomain}/traffic/flow/tile/png?api-version=1.0&style={style}&zoom={z}&x={x}&y={y}';
-            } else if (tilesetId.startsWith('microsoft.traffic.incident')) {
-                this._baseUrl = 'https://{azMapsDomain}/traffic/incident/tile/png?api-version=1.0&style={style}&zoom={z}&x={x}&y={y}';
-            }
+            this._baseUrl = `{protocol}://{azMapsDomain}/map/tile?api-version=${Constants.RENDERV2_VERSION}&tilesetId={tilesetId}&zoom={z}&x={x}&y={y}&tileSize={tileSize}&language={language}&view={view}`;
+            //if (tilesetId.startsWith('microsoft.traffic.flow')) {
+            //    this._baseUrl = 'https://{azMapsDomain}/traffic/flow/tile/png?api-version=1.0&style={style}&zoom={z}&x={x}&y={y}';
+            //} else if (tilesetId.startsWith('microsoft.traffic.incident')) {
+            //    this._baseUrl = 'https://{azMapsDomain}/traffic/incident/tile/png?api-version=1.0&style={style}&zoom={z}&x={x}&y={y}';
+            //}
 
             // adjust maxZoom for certain tilesets:
             const tg = this.getTileGrid();
