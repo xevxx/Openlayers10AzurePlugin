@@ -1,6 +1,8 @@
 /*!
  * azure-maps-openlayers-dist.js
  *
+ * Amended from https://github.com/Azure-Samples/azure-maps-openlayers
+ *
  * A “dist” version (no imports, no Node) that registers:
  *    ol.source.AzureMaps
  *
@@ -9,8 +11,8 @@
  *   • (Optional) ADAL.js (for authType==='aad')
  *
  * Usage:
- *   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@7.4.0/ol.css" />
- *   <script src="https://cdn.jsdelivr.net/npm/ol@7.4.0/dist/ol.js"></script>
+ *   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.5.0/ol.css">
+ *   <script src="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.js"></script>
  *   <!-- If using AAD auth: -->
  *   <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.18/js/adal.min.js"></script>
  *   <script src="azure-maps-openlayers-dist.js"></script>
